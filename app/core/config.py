@@ -7,11 +7,13 @@ class Settings(BaseSettings):
 
     DEBUG: bool
 
-    DB_HOST: str
-    DB_PORT: int
-    DB_NAME: str
-    DB_USER: str
-    DB_PASSWORD: str
+    DB_HOST: str = "localhost"
+    DB_PORT: int = 3306
+    DB_NAME: str = "ats_db"
+    DB_USER: str = "root"
+    DB_PASSWORD: str = "root"
+
+    DATABASE_URL: str | None = None
 
     SECRET_KEY: str
     ALGORITHM: str
