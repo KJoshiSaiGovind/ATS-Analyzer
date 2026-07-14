@@ -1,3 +1,8 @@
+Deployment:To Run the Application Run Frontend
+Frontend:https://ats-analyzer-chi.vercel.app/
+Backend:https://ats-analyzer-9jym.onrender.com
+Database connection I use **console.aiven.io** 
+
 # ATS Resume Screening System
 
 A modern, **Candidate-Centric Applicant Tracking System (ATS)** built with a high-performance FastAPI backend and a sleek, glassmorphism frontend.
