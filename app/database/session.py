@@ -16,9 +16,14 @@ DATABASE_URL = settings.DATABASE_URL or (
 if DATABASE_URL and DATABASE_URL.startswith("mysql://"):
     DATABASE_URL = DATABASE_URL.replace("mysql://", "mysql+pymysql://", 1)
 
+connect_args = {}
+if DATABASE_URL and "aivencloud" in DATABASE_URL:
+    connect_args["ssl"] = {"rejectUnauthorized": True}
+
 engine = create_engine(
     DATABASE_URL,
-    echo=True
+    echo=True,
+    connect_args=connect_args
 )
 
 SessionLocal = sessionmaker(
