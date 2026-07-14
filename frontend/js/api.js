@@ -30,7 +30,15 @@ const api = {
             const response = await fetch(`${API_BASE_URL}${endpoint}`, options);
             const data = await response.json();
             if (!response.ok) {
-                throw new Error(data.detail || 'API Request Failed');
+                let errorMessage = 'API Request Failed';
+                if (data.detail) {
+                    if (Array.isArray(data.detail)) {
+                        errorMessage = data.detail.map(err => err.msg).join(', ');
+                    } else {
+                        errorMessage = data.detail;
+                    }
+                }
+                throw new Error(errorMessage);
             }
             return data;
         } catch (error) {
