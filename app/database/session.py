@@ -13,6 +13,9 @@ DATABASE_URL = settings.DATABASE_URL or (
     f"{settings.DB_NAME}"
 )
 
+if DATABASE_URL and DATABASE_URL.startswith("mysql://"):
+    DATABASE_URL = DATABASE_URL.replace("mysql://", "mysql+pymysql://", 1)
+
 engine = create_engine(
     DATABASE_URL,
     echo=True
