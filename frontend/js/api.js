@@ -1,4 +1,4 @@
-const API_BASE_URL = 'https://ats-analyzer.onrender.com/api';
+const API_BASE_URL = 'https://ats-analyzer-9jym.onrender.com/api';
 
 const api = {
     getToken: () => localStorage.getItem('token'),
