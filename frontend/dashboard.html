@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - ATS System</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav>
+        <h2>ATS Analyzer</h2>
+        <div class="nav-links">
+            <button id="logout-btn">Logout</button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>Candidate Dashboard</h1>
+        
+        <div class="flex gap-1">
+            <!-- Left Column: Upload & Status -->
+            <div style="flex: 1;">
+                <div class="glass-panel">
+                    <h3>Resume Status</h3>
+                    <div id="resume-status" class="badge badge-error">Loading...</div>
+                    
+                    <h4 class="mt-2">Detected Skills</h4>
+                    <div id="detected-skills" class="mt-1"></div>
+
+                    <h4 class="mt-2" style="color: #60a5fa;">Recommended Roles</h4>
+                    <div id="recommended-roles" class="mt-1"></div>
+
+                    <form id="upload-form" class="mt-2">
+                        <div class="form-group">
+                            <label>Upload New Resume (PDF)</label>
+                            <input type="file" id="resume-file" accept=".pdf" required>
+                        </div>
+                        <button type="submit">Upload Resume</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Right Column: ATS Analyzer -->
+            <div style="flex: 1;">
+                <div class="glass-panel">
+                    <h3>Job Analysis</h3>
+                    <p style="font-size: 0.9rem; margin-bottom: 1rem; color: #cbd5e1;">Paste a job description below to see how well your resume matches.</p>
+                    <form id="analyze-form">
+                        <div class="form-group">
+                            <textarea id="job-desc" rows="6" required placeholder="Paste job description here..."></textarea>
+                        </div>
+                        <button type="submit" disabled>Analyze Match</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Panel -->
+        <div id="results-panel" class="glass-panel mt-2 hidden">
+            <h2 class="text-center">Analysis Results</h2>
+            <div class="score-circle" id="score-circle" style="--score: 0%;">
+                <div class="score-inner" id="score-inner">0%</div>
+            </div>
+            
+            <div class="flex gap-1 mt-2">
+                <div style="flex: 1;">
+                    <h3>Matched Skills</h3>
+                    <div id="matched-skills"></div>
+                </div>
+                <div style="flex: 1;">
+                    <h3>Missing Skills</h3>
+                    <div id="missing-skills"></div>
+                </div>
+            </div>
+            
+            <div class="mt-2">
+                <h3>Improvement Suggestions</h3>
+                <ul id="suggestions-list" style="padding-left: 1.5rem; color: #cbd5e1; margin-top: 0.5rem; line-height: 1.6;">
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>
