@@ -177,35 +177,10 @@ export default function DashboardPage({ onLogout }: DashboardPageProps) {
             <a href="#" className="text-primary font-bold border-b-2 border-primary pb-1 h-full flex items-center hover:text-primary transition-colors">
               Dashboard
             </a>
-            <a href="#" className="text-on-surface-variant font-medium h-full flex items-center hover:text-primary transition-colors">
-              Candidates
-            </a>
-            <a href="#" className="text-on-surface-variant font-medium h-full flex items-center hover:text-primary transition-colors">
-              Jobs
-            </a>
-            <a href="#" className="text-on-surface-variant font-medium h-full flex items-center hover:text-primary transition-colors">
-              Analytics
-            </a>
           </div>
 
           {/* Trailing Actions: Child 3 (div[3]) */}
           <div className="flex items-center gap-4">
-            {/* button[1]: notifications */}
-            <button
-              title="Notifications"
-              className="hidden md:flex items-center justify-center w-10 h-10 rounded-full hover:bg-surface-container-highest transition-colors text-on-surface-variant hover:text-primary cursor-pointer"
-            >
-              <Bell className="w-5 h-5" />
-            </button>
-
-            {/* button[2]: settings */}
-            <button
-              title="Settings"
-              className="hidden md:flex items-center justify-center w-10 h-10 rounded-full hover:bg-surface-container-highest transition-colors text-on-surface-variant hover:text-primary cursor-pointer"
-            >
-              <Settings className="w-5 h-5" />
-            </button>
-
             {/* button[3]: Logout */}
             <button
               onClick={onLogout}
@@ -213,15 +188,6 @@ export default function DashboardPage({ onLogout }: DashboardPageProps) {
             >
               Logout
             </button>
-
-            {/* Avatar image container */}
-            <div className="w-10 h-10 rounded-full bg-surface-container-highest overflow-hidden border border-outline-variant">
-              <img
-                className="w-full h-full object-cover"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmkqFffiSY40fxlgy6kIGoVyY8jGhmXVv8FQrI8JpgN64z12FQbkTODaGY95auVyk9rq6Lmtc45ALW32tBV1crXKZ3ZD5tqKRwtNWiqUwGB5wRLR31Uv0YymJIZ-PUqt_W_n-LwmI3iwMsRzC-nhxgxnZG12T5Sw8YUTiOOLJ7qSxN_KHDyL8IKcUeM-TsiFr8dAqJazfawEa4In_LSyz6ViGIrpHbh9OzjuP7-9VMDq1xKYsQJDzk"
-                alt="Avatar"
-              />
-            </div>
 
             {/* Mobile Menu Button */}
             <button className="md:hidden flex items-center justify-center w-10 h-10 text-on-surface cursor-pointer">
@@ -311,45 +277,10 @@ export default function DashboardPage({ onLogout }: DashboardPageProps) {
                     />
                   </div>
                 ) : (
-                  <button className="gradient-btn font-label text-sm text-white px-6 py-3 rounded-lg shadow-lg hover:shadow-primary/20 w-full sm:w-auto cursor-pointer font-bold">
-                    {resume.status === 'parsed' ? 'Change Resume' : 'Upload Resume'}
+                  <button className={`gradient-btn font-label text-sm text-white px-6 py-3 rounded-lg shadow-lg hover:shadow-primary/20 w-full sm:w-auto cursor-pointer font-bold ${resume.status === 'parsed' ? 'bg-green-600 hover:bg-green-500' : ''}`}>
+                    {resume.status === 'parsed' ? '✓ Uploaded Successfully' : 'Upload Resume'}
                   </button>
                 )}
-              </div>
-
-              {/* Detected Skills */}
-              <div className="mt-auto flex flex-col gap-4">
-                <div>
-                  <h4 className="font-label text-xs text-on-surface-variant uppercase tracking-wider mb-2">
-                    Detected Skills
-                  </h4>
-                  <div className="flex flex-wrap gap-2">
-                    {resume.skills.map((skill) => (
-                      <span
-                        key={skill}
-                        className="px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary font-label text-xs"
-                      >
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                <div>
-                  <h4 className="font-label text-xs text-on-surface-variant uppercase tracking-wider mb-2">
-                    Recommended Roles
-                  </h4>
-                  <div className="flex flex-wrap gap-2">
-                    {resume.roles.map((role) => (
-                      <span
-                        key={role}
-                        className="px-3 py-1 rounded-lg bg-surface-container border border-outline-variant text-on-surface font-label text-xs flex items-center gap-1.5"
-                      >
-                        <Award className="w-3.5 h-3.5 text-primary" /> {role}
-                      </span>
-                    ))}
-                  </div>
-                </div>
               </div>
 
             </div>
