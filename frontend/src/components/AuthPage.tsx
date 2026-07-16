@@ -65,7 +65,7 @@ export default function AuthPage({ onNavigateToDashboard, tab, setTab }: AuthPag
         full_name: signUpName,
         email: signUpEmail,
         password: signUpPassword,
-        role: 'candidate'
+        role: 'Candidate'
       });
       const data = await api.request('/auth/login', 'POST', { email: signUpEmail, password: signUpPassword });
       api.setToken(data.access_token);
