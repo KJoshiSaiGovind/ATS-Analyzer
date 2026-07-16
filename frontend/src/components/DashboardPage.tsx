@@ -48,8 +48,16 @@ export default function DashboardPage({ onLogout }: DashboardPageProps) {
     tip: 'Add context on how you deployed applications using CI/CD to improve score by ~8%.'
   });
 
-  const [toasts, setToasts] = useState<{ id: number; message: string; type: 'success' | 'info' | 'warning' }>([]);
+  const [toasts, setToasts] = useState<{ id: number; message: string; type: 'success' | 'info' | 'warning' }[]>([]);
   const toastIdRef = useRef(0);
+
+  const triggerToast = (message: string, type: 'success' | 'info' | 'warning' = 'info') => {
+    const id = toastIdRef.current++;
+    setToasts((prev) => [...prev, { id, message, type }]);
+    setTimeout(() => {
+      setToasts((prev) => prev.filter((t) => t.id !== id));
+    }, 5000);
+  };
 
   useEffect(() => {
     const fetchDashboard = async () => {
