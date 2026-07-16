@@ -1,98 +1,369 @@
 # ATS Resume Screening System
 
-A modern, **Candidate-Centric Applicant Tracking System (ATS)** built with a high-performance FastAPI backend and a sleek, glassmorphism frontend.
+A modern **Candidate-Centric Applicant Tracking System (ATS)** built using **FastAPI**, **MySQL**, and **Vanilla JavaScript**.
 
-This system allows candidates to upload their resumes, paste job descriptions, and instantly receive an ATS match score based on keyword analysis. It also provides AI-free, algorithm-driven job role recommendations based on industry-standard skill mapping.
-
----
-
-## ✨ Features
-
-- **Candidate Dashboard:** A single pane of glass showing uploaded resumes, detected skills, and past ATS analysis history.
-- **Resume Parsing Engine:** Extracts text from PDF files, normalizes keywords, and maps them strictly against a master database of technical skills.
-- **Dynamic ATS Scoring:** Candidates can paste any Job Description. The system instantly calculates a match score `(Matched Skills / Required Skills) * 100`.
-- **Job Role Recommendations:** Analyzes your detected skills (e.g., Python, Docker) and suggests ideal job roles (e.g., Backend Developer, DevOps Engineer).
-- **Premium UI:** A fully responsive frontend built with Vanilla HTML/JS/CSS utilizing frosted glass aesthetics and dynamic score circles.
-- **Secure Authentication:** JWT-based user registration and login.
+The system enables candidates to upload resumes, analyze them against any job description, calculate an ATS match score, and receive job role recommendations based on detected technical skills.
 
 ---
 
-## 🛠️ Tech Stack
+# 🌐 Live Demo
 
-**Backend**
-- **Python 3**
-- **FastAPI** (High-performance web framework)
-- **SQLAlchemy & Alembic** (ORM & Database Migrations)
-- **MySQL** (Relational Database)
-- **PyPDF2** (Resume parsing)
-- **Passlib & JWT** (Authentication)
+### Frontend
+https://ats-analyzer-chi.vercel.app/
 
-**Frontend**
-- **Vanilla HTML5 & CSS3** (No build steps required!)
-- **Vanilla JavaScript (ES6)**
-- **Google Fonts (Inter)**
+### Backend API
+https://ats-analyzer-9jym.onrender.com
+
+### API Documentation
+https://ats-analyzer-9jym.onrender.com/docs
 
 ---
 
-## 🚀 Getting Started
+# 📸 Features
 
-### 1. Prerequisites
-- Python 3.8+
-- MySQL Server running locally
-- Git
+## Authentication
+- JWT-based User Registration
+- Secure Login
+- Password Hashing using Passlib
 
-### 2. Backend Setup
+## Resume Parsing
+- Upload PDF Resume
+- Extract Resume Text
+- Detect Technical Skills
+- Store Resume Information
 
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/KJoshiSaiGovind/ATS-Analyzer.git
-   cd ATS-Analyzer
-   ```
+## ATS Resume Analysis
+- Paste any Job Description
+- Compare Resume Skills with JD Skills
+- Calculate ATS Match Score
 
-2. **Create and activate a virtual environment:**
-   ```bash
-   python -m venv venv
-   # On Windows:
-   .\venv\Scripts\activate
-   # On Mac/Linux:
-   source venv/bin/activate
-   ```
+```
+ATS Score = (Matched Skills / Required Skills) × 100
+```
 
-3. **Install Dependencies:**
-   ```bash
-   pip install -r requirements.txt
-   ```
+## Job Recommendations
 
-4. **Database Configuration:**
-   - Ensure your MySQL server is running.
-   - The database credentials should be configured in `app/database/base.py` (Default: `mysql+pymysql://root:root@localhost:3306/ats_db`).
+Based on detected skills, the system recommends suitable job roles.
 
-5. **Run the Backend Server:**
-   ```bash
-   uvicorn app.main:app --reload --port 8080
-   ```
-   *The API will be available at `http://127.0.0.1:8080`*
+Example
 
-### 3. Frontend Setup
+| Skills | Recommended Role |
+|---------|------------------|
+| Python, FastAPI, SQL | Backend Developer |
+| React, HTML, CSS | Frontend Developer |
+| Docker, Linux | DevOps Engineer |
+| Pandas, NumPy | Data Analyst |
 
-Because the frontend is built entirely with Vanilla web technologies, there is no `npm install` or build step required!
+## Candidate Dashboard
 
-1. Open the `frontend/` folder in your File Explorer.
-2. Double click **`index.html`** to open it in your browser.
-3. Register a new account and enjoy!
+- Uploaded Resume
+- Extracted Skills
+- ATS Analysis History
+- Recommended Job Roles
 
 ---
 
-## 🏗️ Architecture
+# 🛠 Tech Stack
 
-The backend strictly follows a layered architecture to ensure scalability and separation of concerns:
-- **Routes (`app/api/`)**: Defines the FastAPI endpoints.
-- **Services (`app/services/`)**: Contains all business logic (Parsing, Normalization, ATS Math).
-- **Repositories (`app/repositories/`)**: Handles all direct SQLAlchemy database queries.
-- **Models (`app/models/`)**: Defines the MySQL table schemas.
-- **Schemas (`app/schemas/`)**: Defines Pydantic validation models for Request/Response validation.
+## Backend
+
+- Python
+- FastAPI
+- SQLAlchemy
+- Alembic
+- MySQL
+- PyPDF2
+- Passlib
+- JWT Authentication
+
+## Frontend
+
+- HTML5
+- CSS3
+- JavaScript (ES6)
+
+## Database
+
+- MySQL
+- Hosted on **Aiven Cloud Database**
+
+## Deployment
+
+- Frontend → Vercel
+- Backend → Render
+- Database → Aiven MySQL
 
 ---
 
-## 🤝 License
-This project is open-source and available for educational and portfolio purposes.
+# 📂 Project Structure
+
+```
+ATS-Analyzer
+│
+├── app
+│   ├── api
+│   ├── core
+│   ├── database
+│   ├── models
+│   ├── repositories
+│   ├── schemas
+│   ├── services
+│   ├── utils
+│   ├── workers
+│   └── main.py
+│
+├── alembic
+├── frontend
+├── requirements.txt
+└── README.md
+```
+
+---
+
+# ⚙️ Installation
+
+## Clone Repository
+
+```bash
+git clone https://github.com/KJoshiSaiGovind/ATS-Analyzer.git
+
+cd ATS-Analyzer
+```
+
+---
+
+## Create Virtual Environment
+
+### Windows
+
+```bash
+python -m venv venv
+
+venv\Scripts\activate
+```
+
+### Linux / macOS
+
+```bash
+python3 -m venv venv
+
+source venv/bin/activate
+```
+
+---
+
+## Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+## Configure Environment Variables
+
+Create a `.env` file.
+
+```env
+DATABASE_URL=mysql+pymysql://USERNAME:PASSWORD@HOST:PORT/DATABASE
+
+SECRET_KEY=your_secret_key
+
+ALGORITHM=HS256
+
+ACCESS_TOKEN_EXPIRE_MINUTES=60
+```
+
+Use your **Aiven MySQL** connection URL for `DATABASE_URL`.
+
+---
+
+## Run Database Migrations
+
+```bash
+alembic upgrade head
+```
+
+---
+
+## Run Backend
+
+```bash
+uvicorn app.main:app --reload --port 8080
+```
+
+Backend
+
+```
+http://127.0.0.1:8080
+```
+
+Swagger Docs
+
+```
+http://127.0.0.1:8080/docs
+```
+
+---
+
+# 🚀 Frontend
+
+Since the frontend is built using **Vanilla HTML, CSS and JavaScript**, there are no build tools required.
+
+Simply open
+
+```
+frontend/index.html
+```
+
+or deploy it using Vercel.
+
+---
+
+# 🔄 Application Workflow
+
+```
+User Registration
+        │
+        ▼
+User Login
+        │
+        ▼
+Upload Resume (PDF)
+        │
+        ▼
+Resume Parsing
+        │
+        ▼
+Skill Extraction
+        │
+        ▼
+Store Resume
+        │
+        ▼
+Paste Job Description
+        │
+        ▼
+ATS Score Calculation
+        │
+        ▼
+Job Role Recommendation
+        │
+        ▼
+Dashboard History
+```
+
+---
+
+# 🏗 Architecture
+
+The backend follows a layered architecture.
+
+```
+Client
+   │
+   ▼
+FastAPI Routes
+   │
+   ▼
+Service Layer
+   │
+   ▼
+Repository Layer
+   │
+   ▼
+SQLAlchemy ORM
+   │
+   ▼
+Aiven MySQL Database
+```
+
+---
+
+# 📈 ATS Scoring Logic
+
+```
+Resume Skills
+
+↓
+
+Normalize Skills
+
+↓
+
+Extract Job Description Skills
+
+↓
+
+Compare Skills
+
+↓
+
+Calculate Match Score
+
+↓
+
+Generate Recommendations
+```
+
+Formula
+
+```
+ATS Score =
+
+(Matched Skills / Required Skills) × 100
+```
+
+---
+
+# 🔐 Security
+
+- JWT Authentication
+- Password Hashing (Passlib)
+- Input Validation (Pydantic)
+- SQLAlchemy ORM
+- Environment Variables for Secrets
+
+---
+
+# 📚 API Documentation
+
+Interactive Swagger UI
+
+```
+https://ats-analyzer-9jym.onrender.com/docs
+```
+
+---
+
+# Future Improvements
+
+- Resume Version Management
+- Multiple Resume Support
+- Export ATS Report as PDF
+- Admin Dashboard
+- Advanced Resume Parsing
+- AI-based Resume Suggestions
+- Interview Question Recommendations
+
+---
+
+# 👨‍💻 Author
+
+**Sai Govind**
+
+GitHub
+
+https://github.com/KJoshiSaiGovind
+
+LinkedIn
+
+(Add your LinkedIn profile)
+
+---
+
+# License
+
+This project is released under the MIT License.
+
+Feel free to use it for learning, portfolio projects, and educational purposes.
