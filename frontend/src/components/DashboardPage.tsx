@@ -55,12 +55,11 @@ export default function DashboardPage({ onLogout }: DashboardPageProps) {
     const fetchDashboard = async () => {
       try {
         const data = await api.request('/dashboard');
-        if (data.recent_resumes && data.recent_resumes.length > 0) {
-          const latestResume = data.recent_resumes[0];
+        if (data.resume_status === 'parsed') {
           setResume({
-            fileName: latestResume.filename || 'Uploaded Resume',
+            fileName: data.resume_name || 'Uploaded Resume',
             fileSize: '',
-            skills: latestResume.skills.map((s: any) => s.name),
+            skills: data.detected_skills || [],
             roles: data.recommended_roles || [],
             status: 'parsed'
           });
@@ -88,7 +87,7 @@ export default function DashboardPage({ onLogout }: DashboardPageProps) {
       const data = await api.request('/resumes', 'POST', formData, true);
       setUploadProgress(100);
       
-      const parsedSkills = data.skills ? data.skills.map((s: any) => s.name) : [];
+      const parsedSkills = data.skills || [];
       setResume(prev => ({
         ...prev,
         fileName: file.name,
