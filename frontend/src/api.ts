@@ -1,12 +1,12 @@
 const API_BASE_URL = 'https://ats-analyzer-9jym.onrender.com/api';
 
-const api = {
+export const api = {
     getToken: () => localStorage.getItem('token'),
-    setToken: (token) => localStorage.setItem('token', token),
+    setToken: (token: string) => localStorage.setItem('token', token),
     logout: () => localStorage.removeItem('token'),
     
     headers: function(isUpload = false) {
-        const headers = {};
+        const headers: Record<string, string> = {};
         if (!isUpload) {
             headers['Content-Type'] = 'application/json';
         }
@@ -17,8 +17,8 @@ const api = {
         return headers;
     },
 
-    async request(endpoint, method = 'GET', body = null, isUpload = false) {
-        const options = {
+    async request(endpoint: string, method = 'GET', body: any = null, isUpload = false) {
+        const options: RequestInit = {
             method,
             headers: this.headers(isUpload)
         };
@@ -33,7 +33,7 @@ const api = {
                 let errorMessage = 'API Request Failed';
                 if (data.detail) {
                     if (Array.isArray(data.detail)) {
-                        errorMessage = data.detail.map(err => err.msg).join(', ');
+                        errorMessage = data.detail.map((err: any) => err.msg).join(', ');
                     } else {
                         errorMessage = data.detail;
                     }

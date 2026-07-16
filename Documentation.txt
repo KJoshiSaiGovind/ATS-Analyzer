@@ -1,0 +1,53 @@
+Candidate-Centric ATS Resume Screening System
+📌 Project Overview
+The ATS Resume Screening System is a modern, full-stack web application designed to empower candidates by simulating an Applicant Tracking System (ATS). Candidates can upload their resumes (PDF format) to the platform, and the system uses Natural Language Processing (NLP) to extract their skills. It then maps these skills against a database of industry-standard job roles (e.g., Frontend Developer, Data Scientist, DevOps Engineer) to provide the candidate with Recommended Job Roles and an ATS Match Score for each role.
+
+This system provides transparency into how modern recruiting algorithms parse and evaluate resumes, helping candidates tailor their resumes for higher success rates.
+
+🏗️ System Architecture
+1. Frontend (Client-Side)
+Tech Stack: Vanilla JavaScript, HTML5, CSS3.
+Design System: Modern Glassmorphism aesthetic, Dark Mode default, responsive design, micro-animations for high user engagement.
+Hosting: Deployed globally on Vercel.
+Key Features:
+Secure JWT-based Authentication (Login/Register).
+Dynamic Dashboard for viewing profile details.
+Interactive Resume Upload module (multipart/form-data).
+Data visualization of ATS matching scores and recommended roles.
+2. Backend (Server-Side API)
+Tech Stack: Python 3, FastAPI, SQLAlchemy (ORM), Alembic (Migrations).
+Hosting: Deployed securely on Render.
+Architecture Pattern: N-Tier Layered Architecture (Controllers/Routers -> Services -> Repositories -> Models) ensuring high maintainability and separation of concerns.
+Key Modules:
+auth_service.py: Handles password hashing (Bcrypt) and JWT token generation/validation.
+resume_service.py: Parses PDF files (using PyPDF2) and extracts keywords/skills using NLP-inspired text processing.
+dashboard_service.py: Computes algorithmic match scores by cross-referencing extracted candidate skills with predefined job role skill matrices.
+3. Database (Data Layer)
+Tech Stack: MySQL (Relational Database).
+Hosting: Cloud-hosted on Aiven.
+Security: Strict SSL/TLS connection enforcement for secure data transmission.
+Core Entities (Tables):
+users: Stores candidate credentials (encrypted).
+roles: Defines system authorization levels (Candidate vs Recruiter).
+resumes: Stores parsed candidate skills and text data.
+jobs: Stores the skill matrices required for specific industry roles.
+🚀 Key Technical Achievements
+Automated Database Seeding: Implemented robust backend logic to automatically initialize missing database roles (e.g., "Candidate") upon first deployment, ensuring zero-downtime scaling.
+Secure Cloud Integration: Engineered a highly secure connection between the Render Python server and the Aiven MySQL database by dynamically configuring PyMySQL TLS/SSL contexts to prevent connection drops.
+Advanced Parsing Logic: Built a custom resume parsing engine that safely extracts raw text from binary PDF uploads and normalizes it for skill mapping.
+📝 Resume Content
+🔹 Project Title
+Candidate-Centric ATS Resume Screening Engine
+
+🔹 Tech Stack
+Frontend: JavaScript (ES6+), HTML5, CSS3 (Glassmorphism UI) | Hosted on Vercel
+Backend: Python, FastAPI, SQLAlchemy, Alembic, JWT, PyPDF2 | Hosted on Render
+Database: MySQL (Cloud-hosted on Aiven)
+
+🔹 Bullet Points (Choose 3-4 for your resume)
+Architected and developed a full-stack Applicant Tracking System (ATS) to parse candidate resumes and algorithmically calculate job-role match scores.
+Engineered a robust RESTful API using Python and FastAPI, implementing an N-tier layered architecture (Routers, Services, Repositories) for scalable data processing.
+Built a secure authentication pipeline utilizing JWT (JSON Web Tokens) and Bcrypt password hashing to protect user data across a cloud-hosted MySQL database (Aiven).
+Implemented a custom resume parsing module leveraging PyPDF2 and NLP techniques to extract technical skills and cross-reference them against predefined industry job matrices.
+Designed a highly responsive, modern "Glassmorphism" frontend interface using Vanilla JavaScript and CSS, deployed seamlessly via Vercel.
+Configured secure CI/CD deployment pipelines on Render, including automated Alembic database migrations and strict SSL/TLS handshake protocols for cloud database connections.

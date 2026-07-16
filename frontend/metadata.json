@@ -1,0 +1,6 @@
+{
+  "name": "Meridian ATS",
+  "description": "An elegant multi-screen applicant tracking system and ATS resume analyzer with robust matching scores, skill alignment reports, and candidate portal.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
