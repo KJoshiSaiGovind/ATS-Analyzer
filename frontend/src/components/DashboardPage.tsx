@@ -55,7 +55,7 @@ export default function DashboardPage({ onLogout }: DashboardPageProps) {
     const fetchDashboard = async () => {
       try {
         const data = await api.request('/dashboard');
-        if (data.resume_status === 'parsed') {
+        if (data.resume_status === 'Uploaded' || data.resume_status === 'parsed') {
           setResume({
             fileName: data.resume_name || 'Uploaded Resume',
             fileSize: '',
