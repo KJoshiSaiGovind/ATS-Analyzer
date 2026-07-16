@@ -205,7 +205,7 @@ export default function AuthPage({ onNavigateToDashboard, tab, setTab }: AuthPag
                   value={signUpName}
                   onChange={(e) => setSignUpName(e.target.value)}
                   className="h-[56px] px-4 bg-surface-container-lowest border border-outline-variant rounded-lg focus:border-primary focus:ring-1 focus:ring-primary text-on-surface placeholder-on-surface-variant outline-none transition-all font-sans"
-                  placeholder="Jane Doe"
+                  placeholder=""
                   required
                 />
               </div>
@@ -217,7 +217,7 @@ export default function AuthPage({ onNavigateToDashboard, tab, setTab }: AuthPag
                   value={signUpEmail}
                   onChange={(e) => setSignUpEmail(e.target.value)}
                   className="h-[56px] px-4 bg-surface-container-lowest border border-outline-variant rounded-lg focus:border-primary focus:ring-1 focus:ring-primary text-on-surface placeholder-on-surface-variant outline-none transition-all font-sans"
-                  placeholder="jane@company.com"
+                  placeholder=""
                   required
                 />
               </div>
